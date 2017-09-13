@@ -12,7 +12,39 @@
     <p>To get started, edit <code>src/index.js</code>.</p>
 </div>
 <!----------------------------------------------------->
+<!------------------- add movie form  ----------------->
 <!----------------------------------------------------->
+
+
+<form id="add-movie" action="" method="post">
+    <!----------------------------------------------------->
+    <p>Enter movie title and rating</p>
+    <label for="title">Title
+        <input id="title" type="text">
+    </label>
+    <!----------------------------------------------------->
+    <label for="one">
+        <input type="radio" name="rating" id="one" value="one"> 1
+    </label>
+    <label for="two">
+        <input type="radio" name="rating" id="two" value="two"> 2
+    </label>
+    <label for="three">
+        <input type="radio" name="rating" id="three" value="three"> 3
+    </label>
+    <label for="four">
+        <input type="radio" name="rating" id="four" value="four"> 4
+    </label>
+    <label for="five">
+        <input type="radio" name="rating" id="five" value="five"> 5
+    </label>
+    <!----------------------------------------------------->
+    <input type="submit" value="ADD">
+</form>
+
+
+<!----------------------------------------------------->
+<!---------------- movie display table ---------------->
 <!----------------------------------------------------->
 <table>
     <thead>
