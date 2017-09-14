@@ -8,20 +8,35 @@
  * require style imports
  */
 
+const addMovies = require("./addMovies");
+
 ///////////////////////////////////////////////
 ///////////////// variables ///////////////////
 ///////////////////////////////////////////////
 const getMovies = require('./getMovies.js');
-
 let tableBody = document.getElementById("movie-table");
 let addButton = document.getElementById("add-button");
+let titleInput = document.getElementById("title");
 
 ///////////////////////////////////////////////
 /////////////// add movie form ////////////////
 ///////////////////////////////////////////////
 
-addButton.addEventListener("click", () => {
-    fetch("/api/movies").then()
+addButton.addEventListener("click", (e) => {
+    e.preventDefault();
+      // This is the object that is used in addMovies
+
+    // loop
+
+      let inputMovie = {
+        title: titleInput.value
+
+    // che
+      };
+
+      addMovies(inputMovie).then((savedMovie) => console.log(savedMovie));
+
+      console.log(inputMovie);
 });
 
 
