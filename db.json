@@ -1,7 +1,7 @@
 {
   "movies": [
     {
-      "title": "Casablanca",
+      "title": "some movie",
       "rating": "4",
       "id": 1
     },
@@ -9,6 +9,11 @@
       "title": "Star Wars: A New Hope",
       "rating": "5",
       "id": 2
+    },
+    {
+      "title": "new movie",
+      "rating": "4",
+      "id": 3
     }
   ]
 }

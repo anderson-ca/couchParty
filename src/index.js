@@ -23,6 +23,7 @@ let editButton = document.getElementById("edit-button");
 let deleteButton = document.getElementById("delete");
 let userRating = document.querySelectorAll(".user-rating");
 let editUserRating = document.querySelectorAll(".edit-user-rating");
+let movieId = 3;
 
 ///////////////////////////////////////////////
 /////////////// add movie form ////////////////
@@ -109,8 +110,11 @@ getMovies().then((movies) => {
 
     editButton.addEventListener("click", (e) => {
         e.preventDefault();
+        let movieId = e.target.parentElement.parentElement.children;// tds
 
-            let radioValue;
+        console.log(movieId);
+
+        let radioValue;
             editUserRating.forEach( (element) => {
                 if (element.checked) {
                     radioValue = element.value

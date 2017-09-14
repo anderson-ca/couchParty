@@ -1,5 +1,5 @@
 const addMoviesPatch = (movieObject) => {
-    return fetch('/api/movies/' + movieId, {
+    return fetch('/api/movies/2', {
         method: 'put',
         headers: {
             'Content-Type': 'application/json'
