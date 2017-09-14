@@ -17,6 +17,9 @@ const getMovies = require('./getMovies.js');
 let tableBody = document.getElementById("movie-table");
 let addButton = document.getElementById("add-button");
 let titleInput = document.getElementById("title");
+let userRating = document.querySelectorAll(".user-rating");
+
+console.log(userRating);
 
 ///////////////////////////////////////////////
 /////////////// add movie form ////////////////
@@ -27,11 +30,19 @@ addButton.addEventListener("click", (e) => {
       // This is the object that is used in addMovies
 
     // loop
+    let radioValue;
+    userRating.forEach( (element) => {
+        if (element.checked) {
+            radioValue = element.value
+        }
+      return radioValue;
+    });
 
       let inputMovie = {
-        title: titleInput.value
+        title: titleInput.value,
+        rating: radioValue
 
-    // che
+
       };
 
       addMovies(inputMovie).then((savedMovie) => console.log(savedMovie));
@@ -55,6 +66,7 @@ getMovies().then((movies) => {
             "</td><td>" + "title: " + item.title +
             "</td><td>" + "rating: " + item.rating +
             "</td>" + "<button>Delete</button>" +
+            "<td>" + "<button>Edit</button>" +
             "</tr>"
     + msg}
   );

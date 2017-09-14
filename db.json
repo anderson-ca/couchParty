@@ -11,12 +11,9 @@
       "id": 2
     },
     {
-      "title": "hello",
+      "title": "hello movie",
+      "rating": "2",
       "id": 3
-    },
-    {
-      "title": "hello",
-      "id": 4
     }
   ]
 }
