@@ -1,6 +1,6 @@
-const addMovies = (movieObject) => {
-    return fetch('/api/movies', {
-        method: 'post',
+const addMoviesPatch = (movieObject) => {
+    return fetch('/api/movies/' + movieId, {
+        method: 'put',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -8,5 +8,4 @@ const addMovies = (movieObject) => {
     }).then(response => response.json());
 };
 
-module.exports = addMovies;
-
+module.exports = addMoviesPatch;

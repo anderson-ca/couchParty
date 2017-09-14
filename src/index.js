@@ -9,6 +9,7 @@
  */
 
 const addMovies = require("./addMovies");
+const addMoviesPatch = require("./addMoviesPatch");
 
 ///////////////////////////////////////////////
 ///////////////// variables ///////////////////
@@ -50,48 +51,13 @@ addButton.addEventListener("click", (e) => {
       console.log(inputMovie);
 });
 
-///////////////////////////////////////////////
-/////////// movie EDIT option /////////////////
-///////////////////////////////////////////////
 
-
-    let moviesButton = document.getElementsByClassName("movies");
-    console.log(moviesButton);
-    for (let movie of moviesButton) {
-
-        movie.addEventListener("click", (e) => {
-          let movieInfo = e.target.parentElement.parentElement.children;// tds
-
-            let id = movieInfo[0].innerHTML;
-            let title = movieInfo[1].innerHTML;
-            let rating = movieInfo[2].innerHTML;
-            editTitleInput.value = title;
-
-            console.log(typeof rating);
-
-            for (let i = 1; i <= userRating.length; i++) {
-              if (rating == i) {
-                  editUserRating[i - 1].checked = true;
-                  console.log(i);
-
-              }
-            }
-
-        });
-
-    }
-
-
-      editButton.addEventListener("click", (e) => {
-
-      });
 
 
 ///////////////////////////////////////////////
 /////////// movie creation table //////////////
 ///////////////////////////////////////////////
 getMovies().then((movies) => {
-  console.log('Here are all the movies:');
   console.log(movies);
   let msg = "";
 
@@ -109,7 +75,61 @@ getMovies().then((movies) => {
     tableBody.innerHTML = msg;
 
 
-    // attach the listener here
+    ///////////////////////////////////////////////
+/////////// movie EDIT option /////////////////
+///////////////////////////////////////////////
+
+
+    let moviesButton = document.getElementsByClassName("movies");
+    console.log(moviesButton);
+    for (let movie of moviesButton) {
+
+        movie.addEventListener("click", (e) => {
+            let movieInfo = e.target.parentElement.parentElement.children;// tds
+
+            let id = movieInfo[0].innerHTML;
+            let title = movieInfo[1].innerHTML;
+            let rating = movieInfo[2].innerHTML;
+            editTitleInput.value = title;
+
+            console.log(typeof rating);
+
+            for (let i = 1; i <= userRating.length; i++) {
+                if (rating == i) {
+                    editUserRating[i - 1].checked = true;
+                    console.log(i);
+
+                }
+            }
+
+        });
+
+    }
+
+
+    editButton.addEventListener("click", (e) => {
+        e.preventDefault();
+
+            let radioValue;
+            editUserRating.forEach( (element) => {
+                if (element.checked) {
+                    radioValue = element.value
+                }
+                return radioValue;
+            });
+
+            let editInputMovie = {
+                title: editTitleInput.value,
+                rating: radioValue
+            };
+        addMoviesPatch(editInputMovie).then((movies) => {
+
+            console.log(movies);
+
+            // addMoviesPatch(editTitleInput).then((savedMovie) => console.log(savedMovie));
+        })
+    });
+
 
 }).catch((error) => {
   alert('Oh no! Something went wrong.\nCheck the console for details.');
