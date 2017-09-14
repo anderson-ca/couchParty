@@ -31,48 +31,49 @@ let movieId = 3;
 
 addButton.addEventListener("click", (e) => {
     e.preventDefault();
-      // This is the object that is used in addMovies
+    // This is the object that is used in addMovies
 
     // loop
     let radioValue;
-    userRating.forEach( (element) => {
+    userRating.forEach((element) => {
         if (element.checked) {
             radioValue = element.value
         }
-      return radioValue;
+        return radioValue;
     });
 
-      let inputMovie = {
+    let inputMovie = {
         title: titleInput.value,
-        rating: radioValue
-      };
+        rating: radioValue,
+        // id:
 
-      addMovies(inputMovie).then((savedMovie) => /* attach the listener here */ console.log(savedMovie));
+    };
 
-      console.log(inputMovie);
+    addMovies(inputMovie).then((savedMovie) => /* attach the listener here */ console.log(savedMovie));
+
+    console.log(inputMovie);
 });
-
-
 
 
 ///////////////////////////////////////////////
 /////////// movie creation table //////////////
 ///////////////////////////////////////////////
 getMovies().then((movies) => {
-  console.log(movies);
-  let msg = "";
+    console.log(movies);
+    let msg = "";
 
-  movies.forEach((item) => {
-        msg =
-            "<tr>" +
-            "<td>" + item.id +
-            "</td><td>" + item.title +
-            "</td><td>" + item.rating +
-            "</td>" + "<input type = 'submit' id = 'delete' value='Delete'>" +
-            "<td>" + "<input type = 'submit' class='movies' id = 'edit' value='Edit'>" +
-            "</tr>"
-    + msg}
-  );
+    movies.forEach((item) => {
+            msg =
+                "<tr>" +
+                "<td>" + item.id +
+                "</td><td>" + item.title +
+                "</td><td>" + item.rating +
+                "</td>" + "<input type = 'submit' id = 'delete' value='Delete'>" +
+                "<td>" + "<input type = 'submit' class='movies' id = 'edit' value='Edit'>" +
+                "</tr>"
+                + msg
+        }
+    );
     tableBody.innerHTML = msg;
 
 
@@ -91,6 +92,7 @@ getMovies().then((movies) => {
             let id = movieInfo[0].innerHTML;
             let title = movieInfo[1].innerHTML;
             let rating = movieInfo[2].innerHTML;
+            document.getElementById("movie-id").value = id;
             editTitleInput.value = title;
 
             console.log(typeof rating);
@@ -115,17 +117,17 @@ getMovies().then((movies) => {
         console.log(movieId);
 
         let radioValue;
-            editUserRating.forEach( (element) => {
-                if (element.checked) {
-                    radioValue = element.value
-                }
-                return radioValue;
-            });
+        editUserRating.forEach((element) => {
+            if (element.checked) {
+                radioValue = element.value
+            }
+        });
 
-            let editInputMovie = {
-                title: editTitleInput.value,
-                rating: radioValue
-            };
+        let editInputMovie = {
+            title: editTitleInput.value,
+            rating: radioValue,
+            id: document.getElementById("movie-id").value
+        };
         addMoviesPatch(editInputMovie).then((movies) => {
 
             console.log(movies);
@@ -136,8 +138,8 @@ getMovies().then((movies) => {
 
 
 }).catch((error) => {
-  alert('Oh no! Something went wrong.\nCheck the console for details.');
-  console.log(error);
+    alert('Oh no! Something went wrong.\nCheck the console for details.');
+    console.log(error);
 });
 
 

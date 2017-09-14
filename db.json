@@ -1,8 +1,8 @@
 {
   "movies": [
     {
-      "title": "some movie",
-      "rating": "4",
+      "title": "new movie test",
+      "rating": "2",
       "id": 1
     },
     {
@@ -11,8 +11,8 @@
       "id": 2
     },
     {
-      "title": "new movie",
-      "rating": "4",
+      "title": "old movie",
+      "rating": "2",
       "id": 3
     }
   ]
