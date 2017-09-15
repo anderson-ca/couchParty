@@ -1,5 +1,67 @@
 html, body {
     height: 100%;
+    background-color: #c35f1c;
+    text-align: center;
+    background-image: url("shit.png");
+    background-repeat: repeat;
+    background-position: center;
+}
+
+label {
+    color: white;
+    font-family: 'Dosis', sans-serif;
+    font-size: 40px;
+}
+
+h1, h2 {
+    text-align: center;
+    font-family: 'Dosis', sans-serif;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: white;
+}
+
+h1 {
+    color: white;
+}
+
+input, button {
+    border-radius: 10px;
+    border: 4px solid #a96a20;
+    background-color: #a96a20;
+    color: #ffffff;
+    font-weight: bold;
+    height: 50px;
+    width: 100px;
+}
+
+input#title, input#edit-title {
+    width: 300px;
+}
+
+input#edit-title {
+    margin-top: 20px;
+}
+
+input {
+    margin-left: 15px;
+}
+
+input:hover {
+    color: #64300e;
+    border: 4px solid #64300e;
+}
+
+button {
+    height: 50px;
+    width: 250px;
+}
+
+button:hover {
+    color: #64300e;
+    border: 4px solid #64300e;
 }
 
 .container {
@@ -9,6 +71,28 @@ html, body {
     text-align: center;
 }
 
+td {
+    padding: 5px;
+    font-size: 15px;
+}
+
+th {
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+table {
+    box-sizing: border-box;
+    display: none;
+    background-color: white;
+    border-radius: 15px;
+    padding: 10px;
+    width: 60%;
+    margin: 40px auto;
+    text-align: center;
+    max-width: 550px;
+}
 
 #add-movie {
     display: none;
@@ -16,4 +100,36 @@ html, body {
 
 #edit-form {
     display: none;
+}
+
+#pull-up-add-form {
+    display: none;
+    /*position: relative;*/
+    /*bottom: 680px;*/
+    /*left: 250px;*/
+}
+
+#button-div {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    bottom: 20px;
+    margin-bottom: 20px;
+}
+
+/*--------------*/
+/*    LOADER    */
+/*--------------*/
+#loader {
+    border: 16px solid #76190b; /* Light grey */
+    border-top: 16px solid #9e671c; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

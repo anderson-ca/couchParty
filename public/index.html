@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8"/>
     <title>My Application</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Dosis:800" rel="stylesheet">
     <link rel="stylesheet" href="/style.css"/>
 </head>
 <body>
+<div id="loader"></div>
 <!--<div class="container">-->
     <!--<h1>Hello There!</h1>-->
     <!--<p>To get started, edit <code>src/index.js</code>.</p>-->
@@ -19,12 +23,15 @@
         crossorigin="anonymous">
 </script>
 
+<h1>Movie Dump: </h1>
+<h2>The shittiest movie site around!</h2>
+
 <form id="add-movie" action="" method="post">
     <!----------------------------------------------------->
-    <p>Enter movie title and rating</p>
     <label for="title">Title
         <input id="title" type="text">
     </label>
+    <br>
     <!----------------------------------------------------->
     <label for="one">
         <input type="radio" class="user-rating" name="rating" id="one" value="1"> 1
@@ -42,6 +49,7 @@
         <input type="radio" class="user-rating" name="rating" id="five" value="5"> 5
     </label>
     <!----------------------------------------------------->
+    <br>
     <input type="submit" id="add-button" value="ADD">
 </form>
 
@@ -51,10 +59,10 @@
 <!----------------------------------------------------->
 <form id="edit-form">
     <input type="hidden" id="movie-id">
-    <p>Edit movie title and rating</p>
     <label for="title">Title
         <input id="edit-title" type="text">
     </label>
+    <br>
     <!----------------------------------------------------->
     <label for="one">
         <input type="radio" class="edit-user-rating" name="rating" id="one-edit" value="1"> 1
@@ -72,6 +80,7 @@
         <input type="radio" class="edit-user-rating" name="rating" id="five-edit" value="5"> 5
     </label>
     <!----------------------------------------------------->
+    <br>
     <input type="submit" id="edit-button" value="ADD">
 </form>
 <!----------------------------------------------------->
@@ -79,17 +88,15 @@
 <!----------------------------------------------------->
 
 <table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Rating</th>
-    </tr>
+    <thead id="table-head">
     </thead>
+
     <tbody id="movie-table">
     </tbody>
 </table>
-<button id="pull-up-add-form">Click here to add a movie</button>
+<div id="button-div">
+    <button id="pull-up-add-form">Click here to add a movie</button>
+</div>
 <script src="/main.js"></script>
 </body>
 </html>

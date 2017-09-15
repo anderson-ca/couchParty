@@ -24,6 +24,9 @@ let editButton = document.getElementById("edit-button");
 let addMovieForm = document.getElementById("add-movie");
 let pullUpAddForm = document.getElementById("pull-up-add-form");
 let editMovieForm = document.getElementById("edit-form");
+let mainTable = document.getElementsByTagName("table")[0];
+let loader = document.getElementById("loader");
+let tableHead = document.getElementById("table-head");
 
 
 let userRating = document.querySelectorAll(".user-rating");
@@ -85,14 +88,24 @@ addButton.addEventListener("click", (e) => {
 ///////////////////////////////////////////////
 /////////// movie creation table //////////////
 ///////////////////////////////////////////////
+
+// HERE IS THE MASTER THEN
 getMovies().then((movies) => {
+
+
+    loader.style.display = "none";
+    pullUpAddForm.style.display = "inline";
+    mainTable.style.display = "block";
 
     console.log(movies);
     let msg = "";
+    let heading = "<tr><th>ID</th><th>TITLE</th><th>RATING</th></tr>" + "<hr>";
+    tableHead.innerHTML = heading;
+    console.log(tableHead);
+
 
     movies.forEach((item) => {
             msg =
-                "<tr>" +
                 "<td>" + item.id +
                 "</td><td>" + item.title +
                 "</td><td>" + item.rating +
@@ -102,7 +115,9 @@ getMovies().then((movies) => {
                 + msg
         }
     );
+
     tableBody.innerHTML = msg;
+
 
     ///////////////////////////////////////////////
     /////////// movie EDIT option /////////////////
@@ -114,6 +129,9 @@ getMovies().then((movies) => {
     for (let movie of moviesButton) {
 
         movie.addEventListener("click", (e) => {
+
+        editMovieForm.style.display = "block";
+
             let movieInfo = e.target.parentElement.parentElement.children;// tds
 
             let id = movieInfo[0].innerHTML;
@@ -138,6 +156,8 @@ getMovies().then((movies) => {
 
     editButton.addEventListener("click", (e) => {
         e.preventDefault();
+
+        editMovieForm.style.display = "none";
 
         console.log(movieId);
 
@@ -201,7 +221,6 @@ getMovies().then((movies) => {
 
 
 }).catch((error) => {
-    alert('Oh no! Something went wrong.\nCheck the console for details.');
     console.log(error);
 });
 
