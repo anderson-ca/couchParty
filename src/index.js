@@ -21,16 +21,32 @@ let addButton = document.getElementById("add-button");
 let titleInput = document.getElementById("title");
 let editTitleInput = document.getElementById("edit-title");
 let editButton = document.getElementById("edit-button");
+let addMovieForm = document.getElementById("add-movie");
+let pullUpAddForm = document.getElementById("pull-up-add-form");
+let editMovieForm = document.getElementById("edit-form");
+
+
 let userRating = document.querySelectorAll(".user-rating");
 let editUserRating = document.querySelectorAll(".edit-user-rating");
+
 let movieId = 3;
 
 ///////////////////////////////////////////////
 /////////////// add movie form ////////////////
 ///////////////////////////////////////////////
 
+    pullUpAddForm.addEventListener("click", (e) => {
+        addMovieForm.style.display = "block";
+
+    });
+
 addButton.addEventListener("click", (e) => {
     e.preventDefault();
+
+
+    // Fade in the add form
+    addMovieForm.style.display = "none";
+
     // This is the object that is used in addMovies
 
     // loop
@@ -44,9 +60,7 @@ addButton.addEventListener("click", (e) => {
 
     let inputMovie = {
         title: titleInput.value,
-        rating: radioValue,
-        // id:
-
+        rating: radioValue
     };
 
     addMovies(inputMovie).then((savedMovie) => {
@@ -72,6 +86,7 @@ addButton.addEventListener("click", (e) => {
 /////////// movie creation table //////////////
 ///////////////////////////////////////////////
 getMovies().then((movies) => {
+
     console.log(movies);
     let msg = "";
 
@@ -145,7 +160,7 @@ getMovies().then((movies) => {
             let test = document.getElementById("movie-table").children;
 
             for (let row of test) {
-                if (row.children[0].innerText == movies.id) {
+                if (row.children[0].innerText === movies.id) {
                     row.children[0].innerText = movies.id;
                     row.children[1].innerText = movies.title;
                     row.children[2].innerText = movies.rating;
