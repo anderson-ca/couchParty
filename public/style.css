@@ -21,9 +21,11 @@ h1, h2 {
 h2 {
     margin-bottom: 20px;
     color: white;
+    font-style: italic;
 }
 
 h1 {
+    font-size: 60px;
     color: white;
 }
 
@@ -81,6 +83,7 @@ th {
     padding: 10px;
     font-size: 20px;
     font-weight: bolder;
+    font-family: 'Dosis', sans-serif;
 }
 
 table {
@@ -130,7 +133,7 @@ table {
     animation: spin 2s linear infinite;
     position: relative;
     margin: 0 auto;
-    top: 260px;
+    top: 280px;
 }
 
 @keyframes spin {
