@@ -1,16 +1,17 @@
 {
   "movies": [
     {
-      "title": "",
+      "title": "movie",
+      "rating": "3",
       "id": 1
     },
     {
-      "title": "it worked",
-      "rating": "5",
+      "title": "movie b test",
+      "rating": "4",
       "id": 2
     },
     {
-      "title": "harry potter 7",
+      "title": "movie blah",
       "rating": "3",
       "id": 3
     }

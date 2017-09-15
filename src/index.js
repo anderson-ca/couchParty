@@ -110,7 +110,6 @@ getMovies().then((movies) => {
 
     editButton.addEventListener("click", (e) => {
         e.preventDefault();
-        let movieId = e.target.parentElement.parentElement.children;// tds
 
         console.log(movieId);
 
@@ -127,23 +126,19 @@ getMovies().then((movies) => {
             id: document.getElementById("movie-id").value
         };
 
-        let test = document.getElementById("movie-table").firstChild;
 
-        let id = test.firstChild;  // id = 3
-        console.log(id);
-        let title = test.firstChild.nextSibling;
-        console.log(title);
-        let rating = test.firstChild.nextSibling.nextSibling;
-        console.log(rating);
-
-        // let title =
-        console.log(test);
+        console.log(movieId);
         addMoviesPatch(editInputMovie).then((movies) => {
-            id.innerText = movies.id;
-            title.innerText = movies.title;
-            rating.innerText = movies.rating;
-            // movies.rating.innerText = rating;
-            // movies.title.innerText = title;
+            let test = document.getElementById("movie-table").children;
+
+            for (let row of test) {
+                if (row.children[0].innerText == movies.id) {
+                    row.children[0].innerText = movies.id;
+                    row.children[1].innerText = movies.title;
+                    row.children[2].innerText = movies.rating;
+                }
+            }
+
         })
     });
 
@@ -159,7 +154,7 @@ getMovies().then((movies) => {
     for (let deleteButton of deleteButtons) {
         deleteButton.addEventListener("click", (e) => {
 
-        let movieId = e.target.parentElement.parentElement.children[0].innerHTML;
+            let movieId = e.target.parentElement.parentElement.children[0].innerHTML;
 
             let deleteMovie = {
                 id: movieId
