@@ -161,7 +161,9 @@ getMovies().then((movies) => {
             };
 
             deleteMovies(deleteMovie).then((movies) => {
-                e.target.parentElement.parentElement.innerHTML = "";
+                let row = e.target.parentElement.parentElement;
+                row.parentElement.removeChild(row);
+                    //.innerHTML = "";
                 console.log(movies)
 
             });

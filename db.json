@@ -1,19 +1,19 @@
 {
   "movies": [
     {
-      "title": "movie",
-      "rating": "3",
-      "id": 1
-    },
-    {
-      "title": "movie b test",
-      "rating": "4",
-      "id": 2
-    },
-    {
-      "title": "movie blah",
-      "rating": "3",
+      "title": "movie blah edit",
+      "rating": "5",
       "id": 3
+    },
+    {
+      "title": "another onesgdfdfd",
+      "rating": "4",
+      "id": 6
+    },
+    {
+      "title": "tesdfg",
+      "rating": "4",
+      "id": 7
     }
   ]
 }
