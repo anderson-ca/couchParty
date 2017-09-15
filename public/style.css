@@ -39,7 +39,7 @@ input, button {
 
 input#title, input#edit-title {
     width: 300px;
-
+    padding: 5px;
 }
 
 input#edit-title {

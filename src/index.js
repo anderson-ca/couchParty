@@ -44,10 +44,10 @@ pullUpAddForm.addEventListener("click", (e) => {
 
 });
 
-pullUpEditForm.addEventListener("click", (e) => {
-    editMovieForm.style.display = "block";
-
-});
+// pullUpEditForm.addEventListener("click", (e) => {
+//     editMovieForm.style.display = "block";
+//
+// });
 
 
 
