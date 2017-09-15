@@ -23,6 +23,7 @@ let editTitleInput = document.getElementById("edit-title");
 let editButton = document.getElementById("edit-button");
 let addMovieForm = document.getElementById("add-movie");
 let pullUpAddForm = document.getElementById("pull-up-add-form");
+let pullUpEditForm = document.getElementById("pull-up-edit-form");
 let editMovieForm = document.getElementById("edit-form");
 
 
@@ -35,10 +36,17 @@ let movieId = 3;
 /////////////// add movie form ////////////////
 ///////////////////////////////////////////////
 
-    pullUpAddForm.addEventListener("click", (e) => {
-        addMovieForm.style.display = "block";
+pullUpAddForm.addEventListener("click", (e) => {
+    addMovieForm.style.display = "block";
 
-    });
+});
+
+pullUpEditForm.addEventListener("click", (e) => {
+    editMovieForm.style.display = "block";
+
+});
+
+
 
 addButton.addEventListener("click", (e) => {
     e.preventDefault();
@@ -191,7 +199,6 @@ getMovies().then((movies) => {
             deleteMovies(deleteMovie).then((movies) => {
                 let row = e.target.parentElement.parentElement;
                 row.parentElement.removeChild(row);
-                //.innerHTML = "";
                 console.log(movies)
 
             });
