@@ -49,9 +49,22 @@ addButton.addEventListener("click", (e) => {
 
     };
 
-    addMovies(inputMovie).then((savedMovie) => /* attach the listener here */ console.log(savedMovie));
+    addMovies(inputMovie).then((savedMovie) => {
 
-    console.log(inputMovie);
+        console.log(savedMovie);
+
+        let newRow = "<tr>" +
+            "<td>" + savedMovie.id +
+            "</td><td>" + savedMovie.title +
+            "</td><td>" + savedMovie.rating +
+            "</td><td>" + "<input type = 'submit' class = 'delete' id = 'delete' value='Delete'>" +
+            "</td><td>" + "<input type = 'submit' class= 'movies' id = 'edit' value='Edit'>" +
+            "</tr>";
+
+        tableBody.innerHTML = newRow + tableBody.innerHTML;
+    });
+
+
 });
 
 
@@ -163,7 +176,7 @@ getMovies().then((movies) => {
             deleteMovies(deleteMovie).then((movies) => {
                 let row = e.target.parentElement.parentElement;
                 row.parentElement.removeChild(row);
-                    //.innerHTML = "";
+                //.innerHTML = "";
                 console.log(movies)
 
             });
