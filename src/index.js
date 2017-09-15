@@ -10,6 +10,7 @@
 
 const addMovies = require("./addMovies");
 const addMoviesPatch = require("./addMoviesPatch");
+const deleteMovies = require("./deleteMovies");
 
 ///////////////////////////////////////////////
 ///////////////// variables ///////////////////
@@ -20,7 +21,6 @@ let addButton = document.getElementById("add-button");
 let titleInput = document.getElementById("title");
 let editTitleInput = document.getElementById("edit-title");
 let editButton = document.getElementById("edit-button");
-let deleteButton = document.getElementById("delete");
 let userRating = document.querySelectorAll(".user-rating");
 let editUserRating = document.querySelectorAll(".edit-user-rating");
 let movieId = 3;
@@ -68,18 +68,17 @@ getMovies().then((movies) => {
                 "<td>" + item.id +
                 "</td><td>" + item.title +
                 "</td><td>" + item.rating +
-                "</td>" + "<input type = 'submit' id = 'delete' value='Delete'>" +
-                "<td>" + "<input type = 'submit' class='movies' id = 'edit' value='Edit'>" +
+                "</td><td>" + "<input type = 'submit' class = 'delete' id = 'delete' value='Delete'>" +
+                "</td><td>" + "<input type = 'submit' class= 'movies' id = 'edit' value='Edit'>" +
                 "</tr>"
                 + msg
         }
     );
     tableBody.innerHTML = msg;
 
-
     ///////////////////////////////////////////////
-/////////// movie EDIT option /////////////////
-///////////////////////////////////////////////
+    /////////// movie EDIT option /////////////////
+    ///////////////////////////////////////////////
 
 
     let moviesButton = document.getElementsByClassName("movies");
@@ -100,7 +99,6 @@ getMovies().then((movies) => {
             for (let i = 1; i <= userRating.length; i++) {
                 if (rating == i) {
                     editUserRating[i - 1].checked = true;
-                    console.log(i);
 
                 }
             }
@@ -128,19 +126,61 @@ getMovies().then((movies) => {
             rating: radioValue,
             id: document.getElementById("movie-id").value
         };
+
+        let test = document.getElementById("movie-table").firstChild;
+
+        let id = test.firstChild;  // id = 3
+        console.log(id);
+        let title = test.firstChild.nextSibling;
+        console.log(title);
+        let rating = test.firstChild.nextSibling.nextSibling;
+        console.log(rating);
+
+        // let title =
+        console.log(test);
         addMoviesPatch(editInputMovie).then((movies) => {
-
-            console.log(movies);
-
-            // addMoviesPatch(editTitleInput).then((savedMovie) => console.log(savedMovie));
+            id.innerText = movies.id;
+            title.innerText = movies.title;
+            rating.innerText = movies.rating;
+            // movies.rating.innerText = rating;
+            // movies.title.innerText = title;
         })
     });
+
+
+    ///////////////////////////////////////////////
+    /////////// movie DELETE option ///////////////
+    ///////////////////////////////////////////////
+
+
+    let deleteButtons = document.getElementsByClassName("delete");
+    console.log(deleteButtons);
+
+    for (let deleteButton of deleteButtons) {
+        deleteButton.addEventListener("click", (e) => {
+
+        let movieId = e.target.parentElement.parentElement.children[0].innerHTML;
+
+            let deleteMovie = {
+                id: movieId
+            };
+
+            deleteMovies(deleteMovie).then((movies) => {
+                e.target.parentElement.parentElement.innerHTML = "";
+                console.log(movies)
+
+            });
+
+        })
+    }
 
 
 }).catch((error) => {
     alert('Oh no! Something went wrong.\nCheck the console for details.');
     console.log(error);
 });
+
+
 
 
 

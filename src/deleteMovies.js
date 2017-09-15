@@ -1,6 +1,6 @@
-const addMoviesPatch = (movieObject) => {
+const deleteMovies = (movieObject) => {
     return fetch(`/api/movies/${movieObject.id}`, {
-        method: 'put',
+        method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -8,6 +8,4 @@ const addMoviesPatch = (movieObject) => {
     }).then(response => response.json());
 };
 
-module.exports = addMoviesPatch;
-
-
+module.exports = deleteMovies;

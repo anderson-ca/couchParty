@@ -1,18 +1,17 @@
 {
   "movies": [
     {
-      "title": "new movie test",
-      "rating": "2",
+      "title": "",
       "id": 1
     },
     {
-      "title": "Star Wars: A New Hope",
+      "title": "it worked",
       "rating": "5",
       "id": 2
     },
     {
-      "title": "old movie",
-      "rating": "2",
+      "title": "harry potter 7",
+      "rating": "3",
       "id": 3
     }
   ]
