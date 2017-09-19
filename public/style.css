@@ -95,7 +95,8 @@ table {
     width: 60%;
     margin: 40px auto;
     text-align: center;
-    max-width: 550px;
+    max-width: 525px;
+    min-width: 460px;
 }
 
 #add-movie {

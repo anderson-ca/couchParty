@@ -44,18 +44,11 @@ pullUpAddForm.addEventListener("click", (e) => {
 
 });
 
-// pullUpEditForm.addEventListener("click", (e) => {
-//     editMovieForm.style.display = "block";
-//
-// });
-
-
-
 addButton.addEventListener("click", (e) => {
     e.preventDefault();
 
 
-    // Fade in the add form
+    // Show the add form
     addMovieForm.style.display = "none";
 
     // This is the object that is used in addMovies
@@ -66,6 +59,7 @@ addButton.addEventListener("click", (e) => {
         if (element.checked) {
             radioValue = element.value
         }
+        console.log(radioValue);
         return radioValue;
     });
 
@@ -87,10 +81,37 @@ addButton.addEventListener("click", (e) => {
             "</tr>";
 
         tableBody.innerHTML = newRow + tableBody.innerHTML;
+
+        document.querySelector(".movies").addEventListener("click", editMovie);
+        document.querySelector(".delete").addEventListener("click", deleteMovie);
     });
 
 
 });
+
+function editMovie(e) {
+
+    editMovieForm.style.display = "block";
+
+    console.log(tableBody);
+
+    let movieInfo = e.target.parentElement.parentElement.children;// tds
+
+    let id = movieInfo[0].innerHTML;
+    let title = movieInfo[1].innerHTML;
+    let rating = movieInfo[2].innerHTML;
+
+    document.getElementById("movie-id").value = id;
+    editTitleInput.value = title;
+
+    for (let i = 1; i <= userRating.length; i++) {
+        if (rating == i) {
+            editUserRating[i - 1].checked = true;
+
+        }
+    }
+
+}
 
 
 ///////////////////////////////////////////////
@@ -113,15 +134,18 @@ getMovies().then((movies) => {
 
 
     movies.forEach((item) => {
+            let movieId = "movie-" + item.id;
+
             msg =
                 "<td>" + item.id +
                 "</td><td>" + item.title +
                 "</td><td>" + item.rating +
-                "</td><td>" + "<input type = 'submit' class = 'delete' id = 'delete' value='Delete'>" +
+                "</td><td>" + "<input type = 'submit' class = 'delete' id = '" + movieId + "' value='Delete'" +
                 "</td><td>" + "<input type = 'submit' class= 'movies' id = 'edit' value='Edit'>" +
                 "</tr>"
                 + msg
         }
+
     );
 
     tableBody.innerHTML = msg;
@@ -132,32 +156,13 @@ getMovies().then((movies) => {
     ///////////////////////////////////////////////
 
 
+
     let moviesButton = document.getElementsByClassName("movies");
     console.log(moviesButton);
+
     for (let movie of moviesButton) {
 
-        movie.addEventListener("click", (e) => {
-
-        editMovieForm.style.display = "block";
-
-            let movieInfo = e.target.parentElement.parentElement.children;// tds
-
-            let id = movieInfo[0].innerHTML;
-            let title = movieInfo[1].innerHTML;
-            let rating = movieInfo[2].innerHTML;
-            document.getElementById("movie-id").value = id;
-            editTitleInput.value = title;
-
-            console.log(typeof rating);
-
-            for (let i = 1; i <= userRating.length; i++) {
-                if (rating == i) {
-                    editUserRating[i - 1].checked = true;
-
-                }
-            }
-
-        });
+        movie.addEventListener("click", editMovie);
 
     }
 
@@ -182,13 +187,11 @@ getMovies().then((movies) => {
             id: document.getElementById("movie-id").value
         };
 
-
-        console.log(movieId);
         addMoviesPatch(editInputMovie).then((movies) => {
             let test = document.getElementById("movie-table").children;
 
             for (let row of test) {
-                if (row.children[0].innerText === movies.id) {
+                if (row.children[0].innerText == movies.id) {
                     row.children[0].innerText = movies.id;
                     row.children[1].innerText = movies.title;
                     row.children[2].innerText = movies.rating;
@@ -208,30 +211,36 @@ getMovies().then((movies) => {
     console.log(deleteButtons);
 
     for (let deleteButton of deleteButtons) {
-        deleteButton.addEventListener("click", (e) => {
-
-            let movieId = e.target.parentElement.parentElement.children[0].innerHTML;
-
-            let deleteMovie = {
-                id: movieId
-            };
-
-            deleteMovies(deleteMovie).then((movies) => {
-                let row = e.target.parentElement.parentElement;
-                row.parentElement.removeChild(row);
-                console.log(movies)
-
-            });
-
-        })
+        deleteButton.addEventListener("click", deleteMovie)
     }
+
+
+
+    // $(".delete").on("click", () => {
+    //     let movieId = e.target.parentElement.parentElement.children[0].innerHTML;
+    //     let deleteMovie = {
+    //         id: movieId
+    //     };
+    // });
 
 
 }).catch((error) => {
     console.log(error);
 });
 
+function deleteMovie (e) {
 
+    let movieId = e.target.parentElement.parentElement.children[0].innerHTML;
+    let deleteMovie = {
+        id: movieId
+    };
+
+    deleteMovies(deleteMovie).then((movies) => {
+        let row = e.target.parentElement.parentElement;
+        row.parentElement.removeChild(row);
+
+    });
+}
 
 
 

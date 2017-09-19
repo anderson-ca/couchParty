@@ -10,3 +10,11 @@ const addMovies = (movieObject) => {
 
 module.exports = addMovies;
 
+/*
+
+
+movies.add
+movies.find
+movies.update
+movies.delete
+movies.all*/
